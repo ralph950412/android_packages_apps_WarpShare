@@ -25,7 +25,6 @@ android_app {
         "androidx.preference_preference",
         "androidx.recyclerview_recyclerview",
         "com.google.android.material_material",
-        "mokee-cloud",
         "warpshare_MaterialProgressBar",
         "warpshare-prebuilt-aars",
         "warpshare-prebuilt-jars",
