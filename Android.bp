@@ -1,0 +1,193 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app {
+    name: "WarpShare",
+
+    srcs: ["app/src/main/java/**/*.java"],
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+
+    use_embedded_native_libs: true,
+    sdk_version: "35",
+    product_specific: true,
+    certificate: "platform",
+    privileged: true,
+
+    required: [
+        "default_permissions_org.mokee.warpshare",
+    ],
+
+    static_libs: [
+        "AndroidCll",
+        "androidx.core_core",
+        "androidx.collection_collection",
+        "androidx.preference_preference",
+        "androidx.recyclerview_recyclerview",
+        "com.google.android.material_material",
+        "mokee-cloud",
+        "warpshare_MaterialProgressBar",
+        "warpshare-prebuilt-aars",
+        "warpshare-prebuilt-jars",
+    ],
+
+    target: {
+        android_arm64: {
+            jni_libs: [
+                "libc++_shared",
+                "libcdp_one_sdk_android.1.3.0",
+                "libopenjpeg",
+            ],
+        },
+        android_arm: {
+            jni_libs: [
+                "libc++_shared",
+                "libcdp_one_sdk_android.1.3.0",
+                "libopenjpeg",
+            ],
+        },
+    },
+
+    dex_preopt: {
+        enabled: false,
+    },
+
+    optimize: {
+        optimize: true,
+        shrink_resources: true,
+    },
+}
+
+android_library {
+    name: "warpshare_MaterialProgressBar",
+    srcs: ["MaterialProgressBar/library/src/main/java/**/*.java"],
+    resource_dirs: ["MaterialProgressBar/library/src/main/res"],
+    manifest: "MaterialProgressBar/library/src/main/AndroidManifest.xml",
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.annotation_annotation",
+    ],
+}
+
+android_library_import {
+    name: "com.gemalto.jp2_jp2-android_1.0",
+    aars: ["app/libs/com.gemalto.jp2_jp2-android_1.0.aar"],
+}
+
+android_library_import {
+    name: "com.github.bumptech.glide_disklrucache_4.10.0",
+    aars: ["app/libs/com.github.bumptech.glide_disklrucache_4.10.0.aar"],
+}
+
+android_library_import {
+    name: "com.github.bumptech.glide_gifdecoder_4.10.0",
+    aars: ["app/libs/com.github.bumptech.glide_gifdecoder_4.10.0.aar"],
+}
+
+android_library_import {
+    name: "com.github.bumptech.glide_glide_4.10.0",
+    aars: ["app/libs/com.github.bumptech.glide_glide_4.10.0.aar"],
+}
+
+android_library_import {
+    name: "com.koushikdutta.async_androidasync_2.2.1",
+    aars: ["app/libs/com.koushikdutta.async_androidasync_2.2.1.aar"],
+}
+
+filegroup {
+    name: "warpshare-prebuilt-aars",
+    srcs: [
+        ":com.gemalto.jp2_jp2-android_1.0",
+        ":com.github.bumptech.glide_disklrucache_4.10.0",
+        ":com.github.bumptech.glide_gifdecoder_4.10.0",
+        ":com.github.bumptech.glide_glide_4.10.0",
+        ":com.koushikdutta.async_androidasync_2.2.1",
+    ]
+}
+
+java_import {
+    name: "warpshare-prebuilt-jars",
+    jars: ["app/libs/*.jar"],
+}
+
+prebuilt_etc {
+    name: "default_permissions_org.mokee.warpshare",
+    product_specific: true,
+    relative_install_path: "default-permissions",
+    src: "default_permissions_org.mokee.warpshare.xml",
+    filename_from_src: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libopenjpeg",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: [
+                "JP2ForAndroid/lib/libopenjpeg.so",
+            ],
+            shared_libs: [
+                "liblog",
+                "libm",
+                "libdl",
+                "libc",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "JP2ForAndroid/lib64/libopenjpeg.so",
+            ],
+            shared_libs: [
+                "liblog",
+                "libm",
+                "libdl",
+                "libc",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libc++_shared",
+    target: {
+        android_arm: {
+            srcs: [
+                "ProjectRome/lib/libc++_shared.so",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "ProjectRome/lib64/libc++_shared.so",
+            ],
+        },
+    },
+    compile_multilib: "both",
+}
+
+cc_prebuilt_library_shared {
+    name: "libcdp_one_sdk_android.1.3.0",
+    target: {
+        android_arm: {
+            srcs: [
+                "ProjectRome/lib/libcdp_one_sdk_android.1.3.0.so",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "ProjectRome/lib64/libcdp_one_sdk_android.1.3.0.so",
+            ],
+        },
+    },
+    compile_multilib: "both",
+}
+
+java_import {
+    name: "AndroidCll",
+    jars: ["ProjectRome/AndroidCll.jar"],
+}
