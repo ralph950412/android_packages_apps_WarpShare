@@ -46,7 +46,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -55,6 +57,7 @@
 
         <activity
             android:name=".ShareActivity"
+            android:exported="true"
             android:theme="@style/ShareTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -92,7 +95,9 @@
             android:exported="true"
             tools:ignore="ExportedReceiver" />
 
-        <receiver android:name=".InitializeReceiver">
+	<receiver
+            android:name=".InitializeReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
