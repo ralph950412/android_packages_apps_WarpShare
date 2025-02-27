@@ -43,15 +43,11 @@
             android:src="@drawable/ic_mac_24dp"
             android:tint="?android:textColorSecondary" />
 
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+        <ProgressBar
             android:id="@+id/progress"
-            style="@style/Widget.MaterialProgressBar.ProgressBar"
+            style="?android:attr/progressBarStyleSmallTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:indeterminate="true"
-            app:mpb_setBothDrawables="true"
-            tools:indeterminate="false"
-            tools:max="100"
             tools:progress="75" />
 
     </FrameLayout>

@@ -25,7 +25,6 @@ android_app {
         "androidx.preference_preference",
         "androidx.recyclerview_recyclerview",
         "com.google.android.material_material",
-        "warpshare_MaterialProgressBar",
         "warpshare-prebuilt-aars",
         "warpshare-prebuilt-jars",
     ],
@@ -51,17 +50,6 @@ android_app {
         optimize: true,
         shrink_resources: true,
     },
-}
-
-android_library {
-    name: "warpshare_MaterialProgressBar",
-    srcs: ["MaterialProgressBar/library/src/main/java/**/*.java"],
-    resource_dirs: ["MaterialProgressBar/library/src/main/res"],
-    manifest: "MaterialProgressBar/library/src/main/AndroidManifest.xml",
-    static_libs: [
-        "androidx.appcompat_appcompat",
-        "androidx.annotation_annotation",
-    ],
 }
 
 android_library_import {
