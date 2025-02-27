@@ -20,7 +20,6 @@ android_app {
     ],
 
     static_libs: [
-        "AndroidCll",
         "androidx.core_core",
         "androidx.collection_collection",
         "androidx.preference_preference",
@@ -35,15 +34,11 @@ android_app {
     target: {
         android_arm64: {
             jni_libs: [
-                "libc++_shared",
-                "libcdp_one_sdk_android.1.3.0",
                 "libopenjpeg",
             ],
         },
         android_arm: {
             jni_libs: [
-                "libc++_shared",
-                "libcdp_one_sdk_android.1.3.0",
                 "libopenjpeg",
             ],
         },
@@ -151,43 +146,4 @@ cc_prebuilt_library_shared {
     compile_multilib: "both",
     prefer: true,
     soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libc++_shared",
-    target: {
-        android_arm: {
-            srcs: [
-                "ProjectRome/lib/libc++_shared.so",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "ProjectRome/lib64/libc++_shared.so",
-            ],
-        },
-    },
-    compile_multilib: "both",
-}
-
-cc_prebuilt_library_shared {
-    name: "libcdp_one_sdk_android.1.3.0",
-    target: {
-        android_arm: {
-            srcs: [
-                "ProjectRome/lib/libcdp_one_sdk_android.1.3.0.so",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "ProjectRome/lib64/libcdp_one_sdk_android.1.3.0.so",
-            ],
-        },
-    },
-    compile_multilib: "both",
-}
-
-java_import {
-    name: "AndroidCll",
-    jars: ["ProjectRome/AndroidCll.jar"],
 }
