@@ -25,8 +25,8 @@ import androidx.annotation.NonNull;
 import com.dd.plist.NSDictionary;
 import com.dd.plist.PropertyListFormatException;
 import com.dd.plist.PropertyListParser;
-import com.mokee.warpshare.CertificateManager;
 
+import org.mokee.warpshare.certificate.CertificateManager;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
