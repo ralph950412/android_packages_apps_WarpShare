@@ -35,7 +35,7 @@ public class TriggerReceiver extends BroadcastReceiver {
         intent.putExtra(TriggerReceiver.EXTRA_CALLBACK_INTENT, callbackIntent);
 
         return PendingIntent.getBroadcast(context, callbackIntent.hashCode(),
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     @Override
