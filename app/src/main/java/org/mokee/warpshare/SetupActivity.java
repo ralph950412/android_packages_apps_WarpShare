@@ -30,6 +30,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.mokee.warpshare.airdrop.AirDropManager;
 
+import static android.Manifest.permission.READ_MEDIA_AUDIO;
+import static android.Manifest.permission.READ_MEDIA_IMAGES;
+import static android.Manifest.permission.READ_MEDIA_VIDEO;
+import static android.Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.bluetooth.BluetoothAdapter.ACTION_REQUEST_ENABLE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -106,7 +110,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private void updateState() {
         final int ready = mAirDropManager.ready();
-        if (checkSelfPermission(WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
+        if (checkSelfPermission(READ_MEDIA_IMAGES) != PERMISSION_GRANTED) {
             mGroupPerm.setVisibility(View.VISIBLE);
             mGroupWifi.setVisibility(View.GONE);
             mGroupBt.setVisibility(View.GONE);
@@ -126,7 +130,7 @@ public class SetupActivity extends AppCompatActivity {
 
     private void requestPermission() {
         mLastRequestForPermission = SystemClock.elapsedRealtime();
-        requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE}, REQUEST_PERM);
+        requestPermissions(new String[]{READ_MEDIA_AUDIO, READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_VISUAL_USER_SELECTED, WRITE_EXTERNAL_STORAGE}, REQUEST_PERM);
     }
 
     private void setupWifi() {

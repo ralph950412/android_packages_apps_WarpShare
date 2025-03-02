@@ -53,7 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_MEDIA_IMAGES;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static org.mokee.warpshare.airdrop.AirDropManager.STATUS_OK;
 
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements DiscoverListener 
             return true;
         }
 
-        final boolean granted = checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
+        final boolean granted = checkSelfPermission(READ_MEDIA_IMAGES) == PERMISSION_GRANTED;
         final boolean ready = mAirDropManager.ready() == STATUS_OK;
         if (!granted || !ready) {
             mIsInSetup = true;
